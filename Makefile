@@ -2,11 +2,11 @@
 ####################### Makefile Template ##############################
 ########################################################################
 # Student settings
-NAME = YOURNAME
-SID = YOURSID
-EMAIL = YOURUTAEMAIL
+NAME = Diwas Sapkota
+SID = 1001900767
+EMAIL = dxs0767@mavs.uta.edu
 SEMESTER = SPRING2024
-HE_PARTNERS = PERSON1_PERSON2_
+HE_PARTNERS = Dylan Baes, Bishal Girif, Josue Gomez, Ismael Tovar
  
 
 ####### DO NOT EDIT BELOW THIS LINE!!! #########

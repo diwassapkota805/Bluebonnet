@@ -1,37 +1,101 @@
 *, *::before, *::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'aria', sans-serif;
 }
 
-body, html, #root, .app{
+body, html, #root, .app {
   height: 100%;
-  width:100%;
+  width: 100%;
   overflow: hidden;
 }
-h1{
+
+h1 {
   margin: 0 !important;
 }
 
-/* .react-swipeable-view-container{
-  min-height: 100%;
-} */
-
-.page{
+.page {
   min-height: 100%;
   width: 100%;
-  padding: 1em;
 }
 
-.dashboard{
-  background: #FEA900;
+.dashboard,
+.plant-profile,
+.season-insights,
+.plant-search {
+  background: #E0E1BC;
+  overflow: hidden;
 }
 
-.plant-profile{
-  background: #B3DC4A;
+.fw {
+  width: 100%;
 }
 
-.season-insights{
-  background: #6AC0FF;
+.fh {
+  height: 100%;
 }
-.plant-search{
-  background: #fd5c63
+
+.fwh {
+  width: 100%;
+  height: 100%;
+}
+
+.fwv {
+  width: 100%;
+  height: auto;
+}
+
+.fvh {
+  width: auto;
+  height: 100%;
+}
+
+.cr,
+.cc,
+.flex-column,
+.flex-row {
+  display: flex;
+}
+
+.cr {
+  justify-content: center;
+  align-items: center;
+  flex-flow: row nowrap;
+}
+
+.cc {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column nowrap;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.space-between-content {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.no-border {
+  border: none;
+}
+
+.center-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.left-leaves-image,
+.right-leaves-image {
+  width: 200px;
+  height: 120px;
 }

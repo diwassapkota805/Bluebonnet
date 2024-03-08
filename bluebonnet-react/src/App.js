@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import SwipeableViews from 'react-swipeable-views';
-
-// Data
-import { cilantroPlantData, cilantroForum } from './AppConfig';
+import { PlantProvider } from './PlantContext';
 
 // Pages
 import { PlantProfile } from './pages/PlantProfile';
 import { SeasonInsights } from './pages/SeasonInsights';
 import { Dashboard } from './pages/Dashboard';
 import { PlantSearch } from './pages/PlantSearch';
+import { AddPlant } from './pages/AddPlant';
 
 function App() {
   const [index, setIndex] = useState(0); // Initial index state
+  const [selectedPlant, setSelectedPlant] = useState(null); // Plant selected from search
+  const [currentPage, setCurrentPage] = useState('dashboard'); // Current page
 
   const styles = {
     slideContainer: {
@@ -22,10 +23,11 @@ function App() {
 
   // Mapping of screen names to indices
   const screenIndices = {
-    'season-insights': 0,
-    'dashboard': 1,
-    'plant-profile': 2,
-    'plant-search': 3
+    'dashboard': 0,
+    'season-insights': 1,
+    'plant-search': 2,
+    'plant-profile': 3,
+    'add-plant': 4,
   };
 
   // Function to set screen based on name
@@ -38,28 +40,49 @@ function App() {
     }
   };
 
-
-  // EITHER DISPLAYS PLANT SEARCH
-
+  // Render PlantSearch component when index matches
   if (index === screenIndices["plant-search"]) {
     return (
-      <PlantSearch setScreen={setScreen}/>
+      <PlantProvider>
+        <PlantSearch setScreen={setScreen} setSelectedPlant={setSelectedPlant} currentPage={currentPage} />
+      </PlantProvider>
     );
   }
 
-  // OR ARRANGES OTHER VIEWS ON A SLIDER
+  // Render AddPlant component when index matches
+  if (index === screenIndices["add-plant"]) {
+    return (
+      <PlantProvider>
+        <AddPlant setScreen={setScreen} selectedPlant={selectedPlant} currentPage={currentPage} />
+      </PlantProvider>
+    );
+  }
 
+  // Render PlantProfile component when index matches
+  if (index === screenIndices['plant-profile']) {
+    return (
+      <PlantProvider>
+        <PlantProfile setScreen={setScreen} selectedPlant={selectedPlant} currentPage={currentPage} />
+      </PlantProvider>
+    )
+  }
+
+  // Render the main app with swipeable views
   return (
-    <SwipeableViews
-      containerStyle={styles.slideContainer}
-      enableMouseEvents
-      index={index} // Control the current index
-      onChangeIndex={setIndex} // Update index state on change
-    >
-      <SeasonInsights setScreen={setScreen}/>
-      <Dashboard setScreen={setScreen}/>
-      <PlantProfile setScreen={setScreen} plant={cilantroPlantData} forum={cilantroForum} />
-    </SwipeableViews>
+    <PlantProvider>
+      <SwipeableViews
+        containerStyle={styles.slideContainer}
+        enableMouseEvents
+        index={index}
+        onChangeIndex={setIndex}
+      >
+        <Dashboard setScreen={setScreen} setSelectedPlant={setSelectedPlant} currentPage={currentPage} />
+        <SeasonInsights setScreen={setScreen} currentPage={currentPage} />
+      </SwipeableViews>
+      <PlantSearch setScreen={setScreen} setSelectedPlant={setSelectedPlant} currentPage={currentPage} />
+      <PlantProfile setScreen={setScreen} selectedPlant={selectedPlant} currentPage={currentPage} />
+      <AddPlant setScreen={setScreen} selectedPlant={selectedPlant} currentPage={currentPage} />
+    </PlantProvider>
   );
 }
 

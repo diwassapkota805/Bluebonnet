@@ -1,0 +1,27 @@
+.weather-warning-body {
+    background-color: yellow;
+    border: 1px solid black;
+}
+
+.warning-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    justify-content: center;
+    gap: 1em;
+    margin-bottom: 0.5rem;
+    text-decoration: underline;
+    position: relative;
+}
+
+.warning-icon {
+    color: red;
+}
+
+.remove-warning {
+    position: absolute;
+    right: 0;
+    width: 1.5rem;
+}
+
+
+
